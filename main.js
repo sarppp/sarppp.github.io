@@ -1,13 +1,22 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
-import { OrbitControls } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/DRACOLoader.js';
+
+import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
+import { OrbitControls } from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
+import gsap from 'gsap'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 
 const scene = new THREE.Scene()
 const raycaster = new THREE.Raycaster()
 
 const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 80000 );
 camera.position.set( - 400, 250, 400 );
+
+//COLORS
+
+const redd =  new THREE.Color( 0xbe0f05 );
+const whitee = new THREE.Color( 1, 1, 1 );
+const blackk = new THREE.Color( 0x5f7b8f );
+const grayy = new THREE.Color( 0x404955 );
 
 //MOUSE
 const mouse = {
@@ -36,135 +45,96 @@ controls.maxPolarAngle = Math.PI / 2;
 
 //LIGHTS
 
-const hemiLight = new THREE.HemisphereLight( 0x443333, 0x111122 );
-scene.add( hemiLight );
-
-const light2 = new THREE.PointLight( 0xff0000, 1, 100 );
-light2.position.set( 50, 50, 50 );
-scene.add( light2 );
-
-const spotLight = new THREE.SpotLight();
-spotLight.position.set( -1, -1, -1 );
-scene.add( spotLight );
-
-const light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
-light.position.set( 1, 0.39, 1 );
-scene.add(light)
-
-const ambientLight = new THREE.AmbientLight( 0x333333 );
+const ambientLight = new THREE.AmbientLight( 0xFFFFFF, 1 );
 scene.add(ambientLight)
-
-const backLight = new THREE.DirectionalLight(0xffffff, 1)
-backLight.position.set(0, 0, -10)
-
 
 
 //OBJECTS
 
+var manager = new THREE.LoadingManager();
+manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
 
-// Instantiate a loader
-const loader = new GLTFLoader();
+    console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+
+};
+
+manager.onLoad = function ( ) {
+
+    console.log( 'Loading complete!');
+
+};
 
 
-// Optional: Provide a DRACOLoader instance to decode compressed mesh data
-const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath( 'https://threejs.org/examples/js/libs/draco/' );
-loader.setDRACOLoader( dracoLoader );
+manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
 
+    console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
 
-var onOffCubes = []
-let modelLoader = "15_IPC.glb";
+};
+
+manager.onError = function ( url ) {
+
+    console.log( 'There was an error loading ' + url );
+
+};
+
 let model
 let model2
 let model3
 
 
-loader.load(modelLoader, (gltf) => {
-  model = gltf.scene;
-  scene.add( model );
-  onOffCubes.push( model )
+var onOffCubes = []
+var onOffCubes2 = []
+var onOffCubes3 = []
 
-  model.traverse((o) => {
-    // if (o.isMesh) {
-    //   o.material.reflectivity = 1;
-    //   o.material = new THREE.MeshPhongMaterial({ color: 0xffffff });
-    // }
+
+// Instantiate a loader
+// const loader = new GLTFLoader();
+const loader = new GLTFLoader(manager);
+// Optional: Provide a DRACOLoader instance to decode compressed mesh data
+const dracoLoader = new DRACOLoader();
+
+dracoLoader.setDecoderPath( 'https://threejs.org/examples/js/libs/draco/' );
+loader.setDRACOLoader( dracoLoader );
+
+loader.load(
+	// resource URL
+	"15_IPC.glb",
+	// called when the resource is loaded
+	function ( gltf ) {
+    model = gltf.scene;
+
+		scene.add( model );
+
+		// gltf.animations; // Array<THREE.AnimationClip>
+		// gltf.scene; // THREE.Group
+		// gltf.scenes; // Array<THREE.Group>
+		// gltf.cameras; // Array<THREE.Camera>
+		// gltf.asset; // Object
+    var object2 = model.getObjectByName( "IPC_A" );
+    var object3 = model.getObjectByName( "IPC_B" );
+    var object4 = model.getObjectByName( "IPC_C" );
+    var object5 = model.getObjectByName( "IPC_D" );
+    var object6 = model.getObjectByName( "IPC_E" );
+    var object7 = model.getObjectByName( "IPC_F" );
+    var object8 = model.getObjectByName( "IPC_G" );
+    var object9 = model.getObjectByName( "IPC_H" );
+    onOffCubes.push.apply(onOffCubes, [
+      object2,
+      object3,
+      object4,
+      object5,
+      object6,
+      object7,
+      object8,
+      object9])
+    model.traverse((o) => {
+    // console.log(o);
   });
-});
+	});
 
 loader.load("15_CPC.glb", (gltf) => {
   model2 = gltf.scene;
   scene.add( model2 );
-  onOffCubes.push( model2 )
-
-  model2.traverse((o) => {
-    // console.log(o);
-  });
-});
-
-
-loader.load("15_FI.glb", (gltf) => {
-  model3 = gltf.scene;
-  scene.add( model3 );
-  onOffCubes.push( model3 )
-
-  model3.traverse((o) => {
-    // console.log(o);
-  });
-});
-
-
-
-document.addEventListener("click", (e) => raycast(e));
-// document.addEventListener("touchend", (e) => raycast(e, true));
-
-// // movement - please calibrate these values
-// var xSpeed = 0.0001;
-// var ySpeed = 0.0001;
-
-// document.addEventListener("keydown", onDocumentKeyDown, false);
-// function onDocumentKeyDown(event) {
-//     var keyCode = event.which;
-//     if (keyCode == 37) { //Left Arrow
-//         camera.position.x -= 5;
-//         console.log('hi')
-//     } else if (keyCode == 38) { //Up Arrow
-//       camera.position.z += 10;
-//         console.log('hi2')
-//     } else if (keyCode == 39) { //Right Arrow
-//       camera.position.x += 5;
-//         console.log('hi2')
-//     } else if (keyCode == 40) { //Down Arrow
-//       camera.position.z -= 10;
-//         console.log('hi2')
-//     }
-// };
-
-
-function raycast(e, touch = false) {
-  const raycaster = new THREE.Raycaster();
-  const mouse = new THREE.Vector2();
-
-
-  e.preventDefault();
-
-  if (touch) {
-    mouse.x = 2 * (e.changedTouches[0].clientX / window.innerWidth) - 1;
-    mouse.y = 1 - 2 * (e.changedTouches[0].clientY / window.innerHeight);
-  } else {
-    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-  }
-
-  raycaster.setFromCamera(mouse, camera);
-  var object2 = model.getObjectByName( "IPC_A" );
-  var object3 = model.getObjectByName( "IPC_B" );
-  var object4 = model.getObjectByName( "IPC_C" );
-  var object5 = model.getObjectByName( "IPC_D" );
-  var object6 = model.getObjectByName( "IPC_E" );
-  var object7 = model.getObjectByName( "IPC_F" );
-  var object8 = model.getObjectByName( "IPC_G" );
-  var object9 = model.getObjectByName( "IPC_H" );
   var object10 = model2.getObjectByName( "CPC_A" );
   var object11 = model2.getObjectByName( "CPC_B" );
   var object12 = model2.getObjectByName( "CPC_C" );
@@ -174,6 +144,24 @@ function raycast(e, touch = false) {
   var object16 = model2.getObjectByName( "CPC_G" );
   var object17 = model2.getObjectByName( "CPC_H" );
   var object18 = model2.getObjectByName( "CPC_Y" );
+  onOffCubes.push.apply(onOffCubes2, [
+    object10,
+    object11,
+    object12,
+    object13,
+    object14,
+    object15,
+    object16,
+    object17,
+    object18])
+  model2.traverse((o) => {
+    // console.log(o);
+  });
+});
+
+loader.load("15_FI.glb", (gltf) => {
+  model3 = gltf.scene;
+  scene.add( model3 );
   var object19 = model3.getObjectByName( "FI_A" );
   var object20 = model3.getObjectByName( "FI_B" );
   var object21 = model3.getObjectByName( "FI_C" );
@@ -183,16 +171,132 @@ function raycast(e, touch = false) {
   var object25 = model3.getObjectByName( "FI_G" );
   var object26 = model3.getObjectByName( "FI_H" );
   var object27 = model3.getObjectByName( "FI_Y" );
+  onOffCubes.push.apply(onOffCubes3, [
+    object19,
+    object20,
+    object21,
+    object22,
+    object23,
+    object24,
+    object25,
+    object26,
+    object27])
+  model3.traverse((o) => {
+    // console.log(o);
+  });
+});
+
+
+console.log(onOffCubes)
+console.log(onOffCubes2)
+console.log(onOffCubes3)
+
+document.addEventListener("click", (e) => raycast(e));
+// document.addEventListener("mousemove", (e) => raycast(e, true));
+
+document.addEventListener('mousemove',movee)
+
+
+function movee(e) {
+  
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+
+    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
 
   var intersects = raycaster.intersectObjects( scene.children, true );
-  console.log(scene.children);
-  // object2.children[0].material.color.setRGB(1,1,1);
-  // object10.children[0].material.color.setRGB(1,1,1);
-  // object19.children[0].material.color.setRGB(1,1,1);
-  if ((intersects.length > 0 && intersects[ 0 ].object.parent === object2) || (intersects.length > 0 && intersects[ 0 ].object.parent === object3)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object4)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object5)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object6)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object7)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object8)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object9)) {
-    // object2.children[0].material.color.setRGB(0,0,255);
-    scene.background = new THREE.Color( 0xbe0f05 );
+
+  if (
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[0]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[1]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[2]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[3]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[4]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[5]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[6]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[7]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[8])) {
+      onOffCubes[0].children[0].material.color = redd
+  } else {
+    onOffCubes[0].children[0].material.color = whitee
+  }
+  if (
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[0]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[1]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[2]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[3]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[4]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[5]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[6]) ||
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[7]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[8])) {
+      onOffCubes2[0].children[0].material.color = blackk
+  } else {
+    onOffCubes2[0].children[0].material.color = whitee
+  }
+  if  (
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[0]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[1]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[2]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[3]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[4]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[5]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[6]) ||
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[7]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[8])) {
+      onOffCubes3[0].children[0].material.color = grayy
+  } else {
+    onOffCubes3[0].children[0].material.color = whitee
+  }
+  if (scene.background.equals(redd)) {
+    onOffCubes[0].children[0].material.color = redd
+    console.log("IPCCC")
+  }
+  if (scene.background.equals(blackk)) {
+    onOffCubes2[0].children[0].material.color = blackk
+  }
+  if (scene.background.equals(grayy)) {
+    onOffCubes3[0].children[0].material.color = grayy
+  }
+}
+
+
+function raycast(e) {
+
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+
+
+  e.preventDefault();
+    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+
+  
+  var intersects = raycaster.intersectObjects( scene.children, true );
+  // console.log(scene.children);
+
+  if (
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[0]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[1]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[2]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[3]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[4]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[5]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[6]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[7]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes[8])) {
+    scene.background = redd
+    onOffCubes[0].children[0].material.color = redd
+    onOffCubes2[0].children[0].material.color = whitee
+    onOffCubes3[0].children[0].material.color = whitee
     // object2.position.set( 115, 115, 300 );
+    // object2.children[1].material = new THREE.MeshPhongMaterial;
+    // object2.children[0].material.color.setRGB(0,0,255);
     $( ".main-content" ).empty();
     $( ".main-contenttwo" ).empty();
     $( ".popuptwo" ).append( "<div class='main-contenttwo'><h1>IPC</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.youtube.com'>Click here</a>" );
@@ -201,8 +305,20 @@ function raycast(e, touch = false) {
       $(".popuptwo" ).fadeOut();
     });
     console.log("hi");
-  } else if ((intersects.length > 0 && intersects[ 0 ].object.parent === object10) || (intersects.length > 0 && intersects[ 0 ].object.parent === object11)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object12)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object13)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object14)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object15)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object16)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object17)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object18)) {
-    scene.background = new THREE.Color( 0x5f7b8f );
+  } else if (
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[0]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[1]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[2]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[3]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[4]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[5]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[6]) ||
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[7]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[8])) {
+    scene.background = blackk
+    onOffCubes2[0].children[0].material.color = blackk
+    onOffCubes[0].children[0].material.color = whitee
+    onOffCubes3[0].children[0].material.color = whitee
     // object10.children[0].material.color.setRGB(255,0,0);
     $( ".main-content" ).empty();
     $( ".main-contenttwo" ).empty();
@@ -211,9 +327,20 @@ function raycast(e, touch = false) {
     $('.box .close').on('click', function() {
       $(".popupthree" ).fadeOut();
     });
-    console.log("hi2");
-  } else if ((intersects.length > 0 && intersects[ 0 ].object.parent === object19) || (intersects.length > 0 && intersects[ 0 ].object.parent === object20)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object21)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object22)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object23)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object24)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object25)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object26)|| (intersects.length > 0 && intersects[ 0 ].object.parent === object27)){
-    scene.background = new THREE.Color( 0x404955 );
+  } else if  (
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[0]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[1]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[2]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[3]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[4]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[5]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[6]) ||
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[7]) || 
+    (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[8])) {
+    scene.background = grayy
+    onOffCubes3[0].children[0].material.color = grayy
+    onOffCubes[0].children[0].material.color = whitee
+    onOffCubes2[0].children[0].material.color = whitee
     // object19.children[0].material.color.setRGB(0,0,0);
     $( ".main-content" ).empty();
     $( ".main-contenttwo" ).empty();
@@ -223,15 +350,16 @@ function raycast(e, touch = false) {
       $(".popupfour" ).fadeOut();
     });
   } else {
-    // object2.children[0].material.color.setRGB(1,1,1);
-    // object10.children[0].material.color.setRGB(1,1,1);
-    // object19.children[0].material.color.setRGB(1,1,1);
-    // scene.background = new THREE.Color( 0xFFFFFF);
-    // $( ".main-content" ).empty();
-    // $( ".main-contenttwo" ).empty();
+    $('.box .close').on('click', function() {
+      scene.background = whitee
+      onOffCubes[0].children[0].material.color = whitee
+      onOffCubes2[0].children[0].material.color = whitee
+      onOffCubes3[0].children[0].material.color = whitee
+      $( ".main-content" ).empty();
+      $( ".main-contenttwo" ).empty();
+    });
   }
 }
-
 
 // window.onresize = function () {
 
@@ -250,14 +378,10 @@ function raycast(e, touch = false) {
 
 // };
 
-
 function animate() {
   requestAnimationFrame(animate)
   renderer.render(scene, camera)
-  // onOffCubes.rotation.y += 0.01
-  
   controls.update()
-
 }
 
 animate()
