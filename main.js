@@ -4,10 +4,11 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/l
 import { DRACOLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/DRACOLoader.js';
 
 const scene = new THREE.Scene()
-const raycaster = new THREE.Raycaster()
 
 const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 80000 );
 camera.position.set( - 400, 250, 400 );
+
+
 
 //COLORS
 
@@ -15,6 +16,8 @@ const redd =  new THREE.Color( 0xbe0f05 );
 const whitee = new THREE.Color( 1, 1, 1 );
 const blackk = new THREE.Color( 0x5f7b8f );
 const grayy = new THREE.Color( 0x404955 );
+
+let model, model2, model3, model4
 
 //MOUSE
 const mouse = {
@@ -74,10 +77,6 @@ manager.onError = function ( url ) {
     console.log( 'There was an error loading ' + url );
 
 };
-
-let model
-let model2
-let model3
 
 
 var onOffCubes = []
@@ -184,10 +183,13 @@ loader.load("15_FI.glb", (gltf) => {
   });
 });
 
-
-console.log(onOffCubes)
-console.log(onOffCubes2)
-console.log(onOffCubes3)
+loader.load("15_Bridge.glb", (gltf) => {
+  model4 = gltf.scene;
+  scene.add( model4 );
+  model4.traverse((o) => {
+    // console.log(o);
+  });
+});
 
 document.addEventListener("click", (e) => raycast(e));
 // document.addEventListener("mousemove", (e) => raycast(e, true));
@@ -296,7 +298,7 @@ function raycast(e) {
     // object2.children[1].material = new THREE.MeshPhongMaterial;
     // object2.children[0].material.color.setRGB(0,0,255);
     $( ".main-contenttwo" ).empty();
-    $( ".popuptwo" ).css("background-color","rgba(190, 0.15, 0.5, 0.958)").append( "<div class='main-contenttwo'><h1>IPC</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.youtube.com'>Click here</a>" );
+    $( ".popuptwo" ).css("background-color","rgba(190, 0.15, 0.5, 0.958)").append("<div class='main-contenttwo'><h1>IPC</h1> <h2>International</h2> <h2>Patent</h2> <h2>Classification</h2> <p>The <strong>International Patent Classification</strong> is commonly referred to as the IPC. It is based on an international multi-lateral treaty administered by the <strong>World Intellectual Property Organization (WIPO) </strong>and called the <strong>Strasbourg Agreement</strong> Concerning the International Patent Classification. The Strasbourg agreement was concluded in 1971 and entered into force in 1975. The Agreement is open to States party to the <strong>Paris Convention</strong> for the Protection of Industrial Property.</p> <p>The industrial property offices of more than 100 States, four regional offices and the International Bureau of WIPO under the Patent Cooperation Treaty (PCT) actually use the IPC for classifying their published patent applications and patents.</p> <p>In order to keep the IPC up to date with advances in technology, it is continuously revised and an updated version is published <strong>once a year</strong>. All versions can be consulted on the WIPO internet site, including the most recent one.</p> <p>With each new version of the IPC the already classified documentation is reclassified accordingly. Thus, only the current IPC version has to be consulted for retrieving relevant classification symbols.</p> <a href='https://www.epo.org/'>Click here</a>");
     $(".popuptwo").show();
     $('.box .close').on('click', function() {
       scene.background = whitee
@@ -320,7 +322,7 @@ function raycast(e) {
     onOffCubes3[0].children[0].material.color = whitee
     // object10.children[0].material.color.setRGB(255,0,0);
     $( ".main-contenttwo" ).empty();
-    $( ".popuptwo" ).css("background-color","rgba(95, 123,143, 0.958)").append( "<div class='main-contenttwo'><h1>CPC</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.youtube.com'>Click here</a>" );
+    $( ".popuptwo" ).css("background-color","rgba(95, 123,143, 0.958)").append( "<div class='main-contenttwo'><h1>CPC</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.epo.org/'>Click here</a>" );
     $(".popuptwo").show();
     $('.box .close').on('click', function() {
       $(".popuptwo" ).fadeOut();
@@ -343,7 +345,7 @@ function raycast(e) {
     onOffCubes2[0].children[0].material.color = whitee
     // object19.children[0].material.color.setRGB(0,0,0);
     $( ".main-contenttwo" ).empty();
-    $( ".popuptwo" ).css("background-color","rgba(64, 73, 85, 0.958)").append( "<div class='main-contenttwo'><h1>FI</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.youtube.com'>Click here</a>" );
+    $( ".popuptwo" ).css("background-color","rgba(64, 73, 85, 0.958)").append( "<div class='main-contenttwo'><h1>FI</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.epo.org/'>Click here</a>" );
     $(".popuptwo").show();
     $('.box .close').on('click', function() {
       $(".popuptwo" ).fadeOut();
