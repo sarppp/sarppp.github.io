@@ -295,14 +295,15 @@ function raycast(e) {
     // object2.position.set( 115, 115, 300 );
     // object2.children[1].material = new THREE.MeshPhongMaterial;
     // object2.children[0].material.color.setRGB(0,0,255);
-    $( ".main-content" ).empty();
     $( ".main-contenttwo" ).empty();
-    $( ".popuptwo" ).append( "<div class='main-contenttwo'><h1>IPC</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.youtube.com'>Click here</a>" );
+    $( ".popuptwo" ).css("background-color","rgba(190, 0.15, 0.5, 0.958)").append( "<div class='main-contenttwo'><h1>IPC</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.youtube.com'>Click here</a>" );
     $(".popuptwo").show();
     $('.box .close').on('click', function() {
+      scene.background = whitee
+      onOffCubes[0].children[0].material.color = whitee
       $(".popuptwo" ).fadeOut();
+
     });
-    console.log("hi");
   } else if (
     (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[0]) || 
     (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes2[1]) || 
@@ -318,12 +319,13 @@ function raycast(e) {
     onOffCubes[0].children[0].material.color = whitee
     onOffCubes3[0].children[0].material.color = whitee
     // object10.children[0].material.color.setRGB(255,0,0);
-    $( ".main-content" ).empty();
     $( ".main-contenttwo" ).empty();
-    $( ".popupthree" ).append( "<div class='main-contenttwo'><h1>CPC</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.youtube.com'>Click here</a>" );
-    $(".popupthree").show();
+    $( ".popuptwo" ).css("background-color","rgba(95, 123,143, 0.958)").append( "<div class='main-contenttwo'><h1>CPC</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.youtube.com'>Click here</a>" );
+    $(".popuptwo").show();
     $('.box .close').on('click', function() {
-      $(".popupthree" ).fadeOut();
+      $(".popuptwo" ).fadeOut();
+      scene.background = whitee
+      onOffCubes2[0].children[0].material.color = whitee
     });
   } else if  (
     (intersects.length > 0 && intersects[ 0 ].object.parent === onOffCubes3[0]) || 
@@ -340,41 +342,33 @@ function raycast(e) {
     onOffCubes[0].children[0].material.color = whitee
     onOffCubes2[0].children[0].material.color = whitee
     // object19.children[0].material.color.setRGB(0,0,0);
-    $( ".main-content" ).empty();
     $( ".main-contenttwo" ).empty();
-    $( ".popupfour" ).append( "<div class='main-contenttwo'><h1>FI</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.youtube.com'>Click here</a>" );
-    $(".popupfour").show();
+    $( ".popuptwo" ).css("background-color","rgba(64, 73, 85, 0.958)").append( "<div class='main-contenttwo'><h1>FI</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis adipisci quas voluptas voluptates quae debitis doloremque quisquam atque reiciendis soluta necessitatibus nam incidunt nostrum est, rem labore aliquam placeat maiores.</p> <a href='https://www.youtube.com'>Click here</a>" );
+    $(".popuptwo").show();
     $('.box .close').on('click', function() {
-      $(".popupfour" ).fadeOut();
-    });
-  } else {
-    $('.box .close').on('click', function() {
+      $(".popuptwo" ).fadeOut();
       scene.background = whitee
-      onOffCubes[0].children[0].material.color = whitee
-      onOffCubes2[0].children[0].material.color = whitee
       onOffCubes3[0].children[0].material.color = whitee
-      $( ".main-content" ).empty();
-      $( ".main-contenttwo" ).empty();
     });
   }
 }
 
-// window.onresize = function () {
+window.onresize = function () {
 
-//   const width = window.innerWidth;
-//   const height = window.innerHeight;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
 
-//   camera.aspect = width / height;
-//   camera.updateProjectionMatrix();
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
 
-//   renderer.setSize( width, height );
+  renderer.setSize( width, height );
 
-//   bloomComposer.setSize( width, height );
-//   finalComposer.setSize( width, height );
+  bloomComposer.setSize( width, height );
+  finalComposer.setSize( width, height );
 
-//   render();
+  render();
 
-// };
+};
 
 function animate() {
   requestAnimationFrame(animate)

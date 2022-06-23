@@ -1,108 +1,97 @@
-body{
-    font-family: 'Montserrat', sans-serif;
-    margin:0;
-    overflow:hidden;      
-    }
-    
-    .popup{
-        max-width: 100%;
-        max-height: 100%;
-        height: auto;
-        background-color: rgba(253, 253, 253, 0.958);
-        border-radius: 5px;
-        position: absolute;
-        text-align: justify;
-        left: 70%;
-        z-index:1;
-        overflow-y:auto;
-    }
-    
-    .main-content{
-        width: 60%;
-        display: absolute;
-        float: right;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 6em;
-    
-    }
-    
-    
-    
-    .popuptwo{
-        max-width: 100%;
-        max-height: 100%;
-        height: auto;
-        background-color: rgba(190, 0.15, 0.5, 0.958);
-        border-radius: 5px;
-        position: absolute;
-        text-align: justify;
-        left: 70%;
-        z-index:1;
-        overflow-y:auto;
-    }
-    
-    .main-contenttwo{
-        width: 60%;
-        display: absolute;
-        float: right;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 6em;
-        color: white;
-    
-    }
-    
-    .popupthree{
-        max-width: 100%;
-        max-height: 100%;
-        height: auto;
-        background-color: rgba(95, 123,143, 0.958);
-        border-radius: 5px;
-        position: absolute;
-        text-align: justify;
-        left: 70%;
-        z-index:1;
-        overflow-y:auto;
-    }
-    
-    .popupfour{
-        max-width: 100%;
-        max-height: 100%;
-        height: auto;
-        background-color: rgba(64, 73, 85, 0.958);
-        border-radius: 5px;
-        position: absolute;
-        text-align: justify;
-        left: 70%;
-        z-index:1;
-        overflow-y:auto;
-    }
-    
-    
-    
-    /* .flex-container{
-        display: flex;
-        float: right;
-        flex-direction: row;
-        height: 100vh;
-        background-color: white;
-    } */
-    
-    /* .canvas-element{
-        width: 80%;
-        background-color: black;
-    
-    }  */
-    
-    .box {
-        position: relative;
-    }
-    .box .close {
+font-family: Arial, sans-serif;
+margin:0;
+overflow:hidden;      
+}
+
+.popup{
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    background-color: rgba(253, 253, 253, 0.958);
+    border-radius: 5px;
     position: absolute;
-    right: 40px;
-    top: 5px;
-    cursor: pointer;
-    }
-    
-    
+    text-align: justify;
+    left: 70%;
+    z-index:1;
+    overflow-y:auto;
+}
+
+/* .main-content{
+    width: 90%;
+    display: absolute;
+    float: right;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+
+} */
+    .main-contenttwo{
+    width: 90%;
+    display: absolute;
+    float: right;
+    flex-direction: column;
+    justify-content: left;
+    padding: 0 20px;
+    color: white;
+
+}
+
+p{
+    font-size: small;
+    font-weight:300;
+
+}
+
+h2{
+    margin: 0cm;
+}
+
+h1{
+    font-size: 100px;
+    font-weight: bolder;
+    margin: 10px 0;
+}
+
+.popuptwo{
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+    background-color: rgba(190, 0.15, 0.5, 0.958);
+    border-radius: 0px;
+    position: absolute;
+    left: 85%;
+    text-align: justify;
+    z-index:1;
+    overflow-y:auto;
+}
+
+.close{
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0 20px;
+    color: white;
+    position: absolute;
+}
+
+
+/* .flex-container{
+    display: flex;
+    float: right;
+    flex-direction: row;
+    height: 100vh;
+    background-color: white;
+} */
+
+/* .canvas-element{
+    width: 80%;
+    background-color: black;
+
+}  */
+
+
+.box .close {
+position: absolute;
+right: 40px;
+top: 5px;
+cursor: pointer;
+}
