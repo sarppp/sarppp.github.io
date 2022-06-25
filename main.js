@@ -377,10 +377,6 @@ function animate() {
   controls.update()
 }
 
-$(window).load(function() {
-  $('#loading').hide();
-});
-
 animate()
 
 
