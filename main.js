@@ -296,13 +296,13 @@ function raycast(e) {
     // object2.position.set( 115, 115, 300 );
     // object2.children[1].material = new THREE.MeshPhongMaterial;
     // object2.children[0].material.color.setRGB(0,0,255);
-    $( ".main-contenttwo" ).empty();
-    $( ".popuptwo" ).css("background-color","rgba(190, 0.15, 0.5, 0.958)").append("<div class='main-contenttwo'><h1>IPC</h1> <h2>International</h2> <h2>Patent</h2> <h2>Classification</h2> <p>The <strong>International Patent Classification</strong> is commonly referred to as the IPC. It is based on an international multi-lateral treaty administered by the <strong>World Intellectual Property Organization (WIPO) </strong>and called the <strong>Strasbourg Agreement</strong> Concerning the International Patent Classification. The Strasbourg agreement was concluded in 1971 and entered into force in 1975. The Agreement is open to States party to the <strong>Paris Convention</strong> for the Protection of Industrial Property.</p> <p>The industrial property offices of more than 100 States, four regional offices and the International Bureau of WIPO under the Patent Cooperation Treaty (PCT) actually use the IPC for classifying their published patent applications and patents.</p> <p>In order to keep the IPC up to date with advances in technology, it is continuously revised and an updated version is published <strong>once a year</strong>. All versions can be consulted on the WIPO internet site, including the most recent one.</p> <p>With each new version of the IPC the already classified documentation is reclassified accordingly. Thus, only the current IPC version has to be consulted for retrieving relevant classification symbols.</p> <a href='https://www.epo.org/'>Click here</a>");
-    $(".popuptwo").show();
+    $( ".main-content" ).empty();
+    $( ".popup" ).css("background-color","rgba(190, 0.15, 0.5, 0.958)").append("<div class='main-content'><h1>IPC</h1> <h2>International</h2> <h2>Patent</h2> <h2>Classification</h2> <p>The <strong>International Patent Classification</strong> is commonly referred to as the IPC. It is based on an international multi-lateral treaty administered by the <strong>World Intellectual Property Organization (WIPO) </strong>and called the <strong>Strasbourg Agreement</strong> Concerning the International Patent Classification. The Strasbourg agreement was concluded in 1971 and entered into force in 1975. The Agreement is open to States party to the <strong>Paris Convention</strong> for the Protection of Industrial Property.</p> <p>The industrial property offices of more than 100 States, four regional offices and the International Bureau of WIPO under the Patent Cooperation Treaty (PCT) actually use the IPC for classifying their published patent applications and patents.</p> <p>In order to keep the IPC up to date with advances in technology, it is continuously revised and an updated version is published <strong>once a year</strong>. All versions can be consulted on the WIPO internet site, including the most recent one.</p> <p>With each new version of the IPC the already classified documentation is reclassified accordingly. Thus, only the current IPC version has to be consulted for retrieving relevant classification symbols.</p> <a href='https://www.epo.org/'>Click here</a>");
+    $(".popup").show()
     $('.box .close').on('click', function() {
       scene.background = whitee
       onOffCubes[0].children[0].material.color = whitee
-      $(".popuptwo" ).fadeOut();
+      $(".popup" ).fadeOut();
 
     });
   } else if (
@@ -324,7 +324,7 @@ function raycast(e) {
     $( ".popup" ).css("background-color","rgba(95, 123,143, 0.958)").append("<div class='main-content'><h1>CPC</h1> <h2>Cooperative</h2> <h2>Patent</h2> <h2>Classification</h2> <p> In October 2010 an agreement was signed between the presidents of the <strong> United States Patent and Trademark Office (USPTO) </strong> and the <strong> EPO </strong> for a joint classification system, the so-called <strong> Cooperative Patent Classification (CPC) </strong>. On 1st of October 2012: the CPC classification scheme was made available. The CPC is <strong> based on ECLA </strong>, a previously used classification system developed at the EPO, which structure was based on the <strong> International Patent Classification (IPC) </strong>. On 1st of January 2013 the CPC was officially and simultaneously launched in the EPO and in the USPTO and replaced ECLA and the USTPO classification system USPC. After January 2013 also the quality assurance process was started to ensure <strong> harmonized classification practices </strong> between both offices. As the CPC is owned by both offices revisions to the scheme must be agreed and made jointly by the two offices.</p> <p> The CPC provides easy access to <strong> all US and some Asian documents </strong> with the same classification system. The CPC is compatible with the international IPC standard. Since <strong> 2014 </strong> the EPO has started to receive CPC classification data from the <strong> Chinese, Korean and Brazilian patent offices </strong>.  </p> <a href='https://www.youtube.com'>Click here</a>");
     $(".popup").show();
     $('.box .close').on('click', function() {
-      $(".popuptwo" ).fadeOut();
+      $(".popup" ).fadeOut();
       scene.background = whitee
       onOffCubes2[0].children[0].material.color = whitee
     });
@@ -347,7 +347,7 @@ function raycast(e) {
     $( ".popup" ).css("background-color","rgba(64, 73, 85, 0.958)").append("<div class='main-content'><h1>FI/FT</h1> <h2>Japanese</h2> <h2>Classification</h2> <p> The <strong> Japanese Patent Office </strong> makes use of several intellectual classification tools : <strong> 'FI' (File Index) classes, Fterm (File term) codes and 'Freewords' </strong>. Here the File Index FI and the Fterms FT are introduced. The FI classification uses the <strong> same structure </strong> as the <strong> International Patent Classification IPC </strong>. The FI scheme is mainly based on the IPC version 4 (1984 to 1988). </p> <p> Groups of FI-symbols relating to similar technology are defined as Themes. About <strong>3000 Themes </strong> have been created by the JPO. For <strong>2000 </strong> Themes a further deeper indexing, called <strong> Fterm </strong>, was designed. </p> <a href='https://www.youtube.com'>Click here</a>");
     $(".popup").show();
     $('.box .close').on('click', function() {
-      $(".popuptwo" ).fadeOut();
+      $(".popup" ).fadeOut();
       scene.background = whitee
       onOffCubes3[0].children[0].material.color = whitee
     });
